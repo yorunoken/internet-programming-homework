@@ -1,0 +1,62 @@
+[
+    {
+        "question": "What year did Fatih conquer Istanbul?",
+        "answer": ["1453"]
+    },
+    {
+        "question": "Who was the first president of the United States?",
+        "answer": ["George Washington"]
+    },
+    {
+        "question": "What is the capital of France?",
+        "answer": ["Paris"]
+    },
+    {
+        "question": "How many continents are there on Earth?",
+        "answer": ["Seven", "7"]
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "answer": ["Mars"]
+    },
+    {
+        "question": "What is the largest ocean on Earth?",
+        "answer": ["Pacific Ocean", "Pacific"]
+    },
+    {
+        "question": "Who painted the Mona Lisa?",
+        "answer": ["Leonardo da Vinci", "Leonardo"]
+    },
+    {
+        "question": "What is the chemical symbol for water?",
+        "answer": ["H2O"]
+    },
+    {
+        "question": "Which is the smallest country in the world?",
+        "answer": ["Vatican City", "Vatican"]
+    },
+    {
+        "question": "What is the longest river in the world?",
+        "answer": ["Nile River", "Nile"]
+    },
+    {
+        "question": "What is the square root of 64?",
+        "answer": ["8", "eight"]
+    },
+    {
+        "question": "Who wrote 'Romeo and Juliet'?",
+        "answer": ["William Shakespeare", "Shakespeare"]
+    },
+    {
+        "question": "Which element has the atomic number 1?",
+        "answer": ["Hydrogen"]
+    },
+    {
+        "question": "How many players are there in a standard soccer team?",
+        "answer": ["11", "eleven"]
+    },
+    {
+        "question": "What is the capital of Japan?",
+        "answer": ["Tokyo"]
+    }
+]
