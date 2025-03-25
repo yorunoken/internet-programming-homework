@@ -28,29 +28,58 @@
             span {
                 color: #551a8b;
             }
+
+            .picker:hover {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
         <a href="/">Click here to go to main page</a>
         <br />
-        <span>Merhaba, yeni resimler eklemek için `/image/imgs` dosyasına herhangi bir fotoğraf atmanız yeterli!</span>
-        <div id="ascii-container"></div>
+        <span>Merhaba, yeni resimler eklemek için `/image/imgs` dosyasına bir JPG dosyası atmanız yeterli!</span>
+        <span>Arkaplanı parlak olan fotoğraflar atarsanız daha güzel görünür.</span>
+        <span>Fotoğraflar en güzel %60 uzaklıkta gözükür.</span>
+
+        <span id="prev" class="picker">Önceki resim</span>
+        <span id="next" class="picker">Sonraki resim</span>
+        <div id="ascii-container">Loading...</div>
 
         <script>
-            fetch("/image/convertion.php")
-                .then((response) => response.json())
-                .then((asciiFrames) => {
-                    console.log(asciiFrames);
-                    let currentFrame = 0;
-                    const container = document.getElementById("ascii-container");
+            let currentFrame = 0;
+            let asciiFrames = [];
 
-                    function displayFrame() {
-                        container.textContent = asciiFrames[currentFrame];
-                        currentFrame = (currentFrame + 1) % asciiFrames.length;
-                    }
+            // Render all the images on page load
+            function fetchImages() {
+                fetch("/image/convertion.php")
+                    .then((response) => response.json())
+                    .then((frames) => {
+                        asciiFrames = frames;
+                        displayFrame(currentFrame);
+                    });
+            }
 
-                    setInterval(displayFrame, 100);
-                });
+            function displayFrame(index) {
+                const container = document.getElementById("ascii-container");
+                container.textContent = asciiFrames[index];
+            }
+
+            document.getElementById("next").addEventListener("click", () => {
+                if (asciiFrames.length > 0) {
+                    currentFrame = (currentFrame + 1) % asciiFrames.length;
+                    displayFrame(currentFrame);
+                }
+            });
+
+            document.getElementById("prev").addEventListener("click", () => {
+                if (asciiFrames.length > 0) {
+                    currentFrame = (currentFrame - 1 + asciiFrames.length) % asciiFrames.length;
+                    displayFrame(currentFrame);
+                }
+            });
+
+            // Initialize
+            fetchImages();
         </script>
     </body>
 </html>

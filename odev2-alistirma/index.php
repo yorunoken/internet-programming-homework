@@ -46,108 +46,45 @@ if ($_SESSION["current_question"] > $_SESSION["total_questions"]) {
     <title>Quiz Game</title>
     <style>
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: "Courier New", Courier, monospace;
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
+            padding: 20px;
+            background-color: #000;
+            color: #0f0;
+            line-height: 1.5;
         }
 
-        h1 {
-            color: #fff;
-            font-size: 2.5em;
-            margin-bottom: 1.5em;
-            font-weight: 600;
-        }
-
-        .correct {
-            color: #4ade80;
-            padding: 10px 0;
-        }
-
-        .wrong {
-            color: #f87171;
-            padding: 10px 0;
-        }
-
-        .question {
-            background-color: #252525;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        .score {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            color: #fff;
-        }
-
-        input[type="text"] {
-            padding: 12px 16px;
-            font-size: 1em;
-            background-color: #333;
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: #fff;
-            margin-right: 10px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: #666;
-        }
-
-        button {
-            padding: 12px 24px;
-            font-size: 1em;
-            cursor: pointer;
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
+        input, button {
+            font-family: "Courier New", Courier, monospace;
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 5px 10px;
+            margin: 5px 0;
         }
 
         button:hover {
-            background-color: #2563eb;
+            background: #0f0;
+            color: #000;
+            cursor: pointer;
         }
 
-        .end-game {
-            margin-top: 20px;
+        .correct { color: #0f0; }
+        .wrong { color: #f00; }
+
+        .question {
+            border: 1px solid #0f0;
+            padding: 15px;
+            margin: 10px 0;
         }
+
+        a { color: #551a8b; }
+        a:hover { color: #0f0; }
 
         .end-game button {
-            background-color: #dc2626;
-        }
-
-        .end-game button:hover {
-            background-color: #b91c1c;
-        }
-
-        a {
-            color: #60a5fa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        a:hover {
-            color: #93c5fd;
-        }
-
-        .score p {
-            margin-top: 15px;
-            font-size: 1.1em;
-            color: #9ca3af;
-        }
-
-        form {
-            margin: 0;
+            border-color: #f00;
+            color: #f00;
         }
     </style>
 </head>
@@ -163,13 +100,13 @@ switch ($game_state) {
         </div>
 
         <?php if (isset($feedback)): ?>
-            <p class="<?php echo $feedback_class; ?>"><?php echo $feedback; ?></p>
+            <p class="<?= $feedback_class ?>"><?= $feedback ?></p>
         <?php endif; ?>
 
         <div class="question">
             <form method="post">
-                <p>Question <?php echo $_SESSION["current_question"] + 1; ?>/<?= $_SESSION["total_questions"] ?>:</p>
-                <p><?php echo $current_question["question"]; ?></p>
+                <p>Question <?= $_SESSION["current_question"] + 1 ?>/<?= $_SESSION["total_questions"] ?>:</p>
+                <p><?= $current_question["question"] ?></p>
                 <input type="text" name="answer" required autocomplete="off">
                 <button type="submit" name="submit">Submit</button>
             </form>
@@ -181,7 +118,7 @@ switch ($game_state) {
 
     case "finished": ?>
         <div class="score">
-            Final Score: <?php echo $_SESSION["score"]; ?> / <?php echo $_SESSION["total_questions"]; ?>
+            Final Score: <?= $_SESSION["score"] ?> / <?= $_SESSION["total_questions"] ?>
 
             <?php
             $percentage = ($_SESSION["score"] / $_SESSION["total_questions"]) * 100;

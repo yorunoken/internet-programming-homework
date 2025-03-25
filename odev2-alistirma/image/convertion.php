@@ -1,6 +1,6 @@
 <?php
 
-function imageToAscii($imagePath, $width = 100, $height = 100)
+function imageToAscii($imagePath, $width = 150, $height = 150)
 {
     $asciiChars = "@%#*+=-:. ";
 
@@ -23,7 +23,8 @@ function imageToAscii($imagePath, $width = 100, $height = 100)
             $brightness = $r * 0.2126 + $g * 0.7152 + $b * 0.0722;
 
             // Convert the brightness into ASCII characters and add it to asciiImage
-            $asciiImage .= $asciiChars[intval($brightness / 25)];
+            $index = min(intval($brightness / 25), strlen($asciiChars));
+            $asciiImage .= $asciiChars[$index - 1];
         }
 
         // Go to the next line because we're done with the row
