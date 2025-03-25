@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ASCII Animation</title>
+        <style>
+            body {
+                font-family: "Courier New", Courier, monospace;
+                white-space: pre;
+                background-color: #000;
+                color: #0f0;
+                margin: 0;
+                padding: 0;
+            }
+
+            #ascii-container {
+                margin-top: 10px;
+                font-size: 10px;
+                line-height: 1;
+                letter-spacing: 4px;
+                font-family: "Courier New", Courier, monospace;
+                display: inline-block;
+                font-weight: bold;
+            }
+
+            a,
+            span {
+                color: #551a8b;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="/">Click here to go to main page</a>
+        <br />
+        <span>Merhaba, yeni resimler eklemek için `/image/imgs` dosyasına herhangi bir fotoğraf atmanız yeterli!</span>
+        <div id="ascii-container"></div>
+
+        <script>
+            fetch("/image/convertion.php")
+                .then((response) => response.json())
+                .then((asciiFrames) => {
+                    console.log(asciiFrames);
+                    let currentFrame = 0;
+                    const container = document.getElementById("ascii-container");
+
+                    function displayFrame() {
+                        container.textContent = asciiFrames[currentFrame];
+                        currentFrame = (currentFrame + 1) % asciiFrames.length;
+                    }
+
+                    setInterval(displayFrame, 100);
+                });
+        </script>
+    </body>
+</html>

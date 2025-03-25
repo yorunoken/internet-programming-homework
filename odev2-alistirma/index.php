@@ -46,35 +46,108 @@ if ($_SESSION["current_question"] > $_SESSION["total_questions"]) {
     <title>Quiz Game</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 1.5em;
+            font-weight: 600;
+        }
+
         .correct {
-            color: green;
+            color: #4ade80;
+            padding: 10px 0;
         }
+
         .wrong {
-            color: red;
+            color: #f87171;
+            padding: 10px 0;
         }
+
         .question {
+            background-color: #252525;
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 20px;
         }
+
         .score {
             font-size: 1.2em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #fff;
         }
+
         input[type="text"] {
-            padding: 5px;
+            padding: 12px 16px;
             font-size: 1em;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            margin-right: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
+
+        input[type="text"]:focus {
+            border-color: #666;
+        }
+
         button {
-            padding: 5px 15px;
+            padding: 12px 24px;
             font-size: 1em;
             cursor: pointer;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
         }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
         .end-game {
-            margin-top: 10px;
+            margin-top: 20px;
+        }
+
+        .end-game button {
+            background-color: #dc2626;
+        }
+
+        .end-game button:hover {
+            background-color: #b91c1c;
+        }
+
+        a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            color: #93c5fd;
+        }
+
+        .score p {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #9ca3af;
+        }
+
+        form {
+            margin: 0;
         }
     </style>
 </head>
@@ -114,13 +187,13 @@ switch ($game_state) {
             $percentage = ($_SESSION["score"] / $_SESSION["total_questions"]) * 100;
 
             if ($percentage >= 90) {
-                echo "<p>Excellent performance! 🌟</p>";
+                echo "<p>Excellent, well done!</p>";
             } elseif ($percentage >= 70) {
                 echo "<p>Good job! 👍</p>";
             } elseif ($percentage >= 50) {
-                echo "<p>Not bad, but room for improvement 📚</p>";
+                echo "<p>Not bad, but room for improvement</p>";
             } else {
-                echo "<p>Keep studying! 💪</p>";
+                echo "<p>Keep studying!</p>";
             }
             ?>
         </div>
@@ -129,6 +202,8 @@ switch ($game_state) {
         </form>
         <?php break;}
 ?>
+
+<a href="/image">Click here to go to image page</a>
 </body>
 
 </html>
