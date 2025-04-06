@@ -15,8 +15,12 @@ function imageToAscii($imagePath, $width = 150, $height = 150)
     for ($y = 0; $y < $height; $y++) {
         // Start looping from the x coords inside y, this means the image processing will go left to right, top to bottom.
         for ($x = 0; $x < $width; $x++) {
+            // Explicitly cast float values to integers
+            $pixelX = intval(($x * $imageWidth) / $width);
+            $pixelY = intval(($y * $imageHeight) / $height);
+
             // Take the image's colors at the specific coords we're at right now, and extract its rgb and brightness values
-            $pixelColor = imagecolorat($image, ($x * $imageWidth) / $width, ($y * $imageHeight) / $height);
+            $pixelColor = imagecolorat($image, $pixelX, $pixelY);
             $r = ($pixelColor >> 16) & 0xff;
             $g = ($pixelColor >> 8) & 0xff;
             $b = $pixelColor & 0xff;
