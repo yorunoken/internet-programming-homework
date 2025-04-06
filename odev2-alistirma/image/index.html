@@ -46,17 +46,20 @@
         <div id="ascii-container">Loading...</div>
 
         <script>
-            let currentFrame = 0;
+            let currentFrameIndex = 0;
             let asciiFrames = [];
 
             // Render all the images on page load
-            function fetchImages() {
-                fetch("/image/convertion.php")
-                    .then((response) => response.json())
-                    .then((frames) => {
-                        asciiFrames = frames;
-                        displayFrame(currentFrame);
-                    });
+            async function fetchImages() {
+                const res = await fetch("/image/convertion.php");
+
+                if (!res.ok) {
+                    console.error("Something went wrong while getting images");
+                    return;
+                }
+
+                asciiFrames = await res.json();
+                displayFrame(currentFrameIndex);
             }
 
             function displayFrame(index) {
@@ -66,15 +69,15 @@
 
             document.getElementById("next").addEventListener("click", () => {
                 if (asciiFrames.length > 0) {
-                    currentFrame = (currentFrame + 1) % asciiFrames.length;
-                    displayFrame(currentFrame);
+                    currentFrameIndex = (currentFrameIndex + 1) % asciiFrames.length;
+                    displayFrame(currentFrameIndex);
                 }
             });
 
             document.getElementById("prev").addEventListener("click", () => {
                 if (asciiFrames.length > 0) {
-                    currentFrame = (currentFrame - 1 + asciiFrames.length) % asciiFrames.length;
-                    displayFrame(currentFrame);
+                    currentFrameIndex = (currentFrameIndex - 1 + asciiFrames.length) % asciiFrames.length;
+                    displayFrame(currentFrameIndex);
                 }
             });
 

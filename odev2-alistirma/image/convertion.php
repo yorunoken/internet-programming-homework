@@ -21,6 +21,8 @@ function imageToAscii($imagePath, $width = 150, $height = 150)
 
             // Take the image's colors at the specific coords we're at right now, and extract its rgb and brightness values
             $pixelColor = imagecolorat($image, $pixelX, $pixelY);
+
+            // 00000000 RRRRRRRR GGGGGGGG BBBBBBBB
             $r = ($pixelColor >> 16) & 0xff;
             $g = ($pixelColor >> 8) & 0xff;
             $b = $pixelColor & 0xff;
