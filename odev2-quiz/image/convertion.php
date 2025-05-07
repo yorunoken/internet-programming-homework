@@ -49,5 +49,3 @@ foreach ($imagePaths as $imagePath) {
 }
 
 echo json_encode($asciiFrames);
-
-?>
